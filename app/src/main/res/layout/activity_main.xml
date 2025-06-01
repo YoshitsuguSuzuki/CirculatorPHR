@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:background="#add8e6"
+        android:id="@+id/machineLayout">
+        <ImageView
+            android:id="@+id/imageViewCirculator1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:srcCompat="@drawable/circulator" />
+        <TextView
+            android:id="@+id/textViewProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="110dp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:text="YAMAZEN" />
+        <TextView
+            android:id="@+id/textViewMachineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="150dp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            android:text="YAR-FKW15" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:id="@+id/bleLayout">
+        <ImageView
+            android:id="@+id/imageViewBluetoothDisconnected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/bluetooth_disconnected" />
+        <ImageView
+            android:id="@+id/imageViewBluetoothConnected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="20dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/bluetooth_connected" />
+        <ImageView
+            android:id="@+id/imageViewBluetoothCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ble_cancel" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="400dp"
+        android:id="@+id/horizontalSwingLayout">
+        <ImageView
+            android:id="@+id/imageViewHorizontalSwingOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/horizontal_swing_off" />
+        <ImageView
+            android:id="@+id/imageViewHorizontalSwingOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/horizontal_swing_on" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="400dp"
+        android:id="@+id/airFlowLayout">
+        <ImageView
+            android:id="@+id/imageViewAirFlowOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/air_flow_off" />
+        <ImageView
+            android:id="@+id/imageViewAirFlowOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/air_flow_on" />
+        <ImageView
+            android:id="@+id/imageViewAirFlowLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/air_low" />
+        <ImageView
+            android:id="@+id/imageViewAirFlowMiddle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/air_middle" />
+        <ImageView
+            android:id="@+id/imageViewAirFlowHigh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/air_high" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="400dp"
+        android:id="@+id/powerLayout">
+        <ImageView
+            android:id="@+id/imageViewPowerOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/power_off" />
+        <ImageView
+            android:id="@+id/imageViewPowerOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/power_on" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="370dp"
+        android:layout_marginTop="400dp"
+        android:id="@+id/timerLayout">
+        <ImageView
+            android:id="@+id/imageViewTimerOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/timer_off" />
+        <ImageView
+            android:id="@+id/imageViewTimerOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/timer_on" />
+        <TextView
+            android:id="@+id/textViewTimerMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="0dp"
+            android:text="-"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/textViewTimerVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="150dp"
+            android:text=""
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="490dp"
+        android:layout_marginTop="400dp"
+        android:id="@+id/verticalSwingLayout">
+        <ImageView
+            android:id="@+id/imageViewVerticalSwingOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="visible"
+            app:srcCompat="@drawable/vertical_swing_off" />
+        <ImageView
+            android:id="@+id/imageViewVerticalSwingOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="50dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/vertical_swing_on" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <ImageView
+            android:id="@+id/imageViewPersolLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:srcCompat="@drawable/ogp_pphr" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
