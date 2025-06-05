@@ -19,7 +19,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,9 +36,6 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
     private static final int STATUS_ID_DEVICE_STATUS = 1;
     private static final int STATUS_ID_OFF_TIMER = 2;
     private final String TAG = "PHR";
-
-    private final String HHUAWEI_MEDIAPADT5 = "AGS2-W09";
-    private final String LENOVO_TAB10 = "Lenovo TB-X606F";
 
     private BleScanControl mBleScanControl;
     private BleGattInterface mBleGattInterface;
@@ -85,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     /**
      * onCreate Method
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *                           previously being shut down then this Bundle contains the data it most
+     *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
             if (view.equals(mImageViewBluetoothDisconnected)) {
                 setContentView(R.layout.ble_scan_device);
                 startScanBleDevice();
-            } else if(view.equals(mImageViewBluetoothCancel)) {
+            } else if (view.equals(mImageViewBluetoothCancel)) {
                 if (null != mBleConnectingTimer) {
                     mBleConnectingTimer.cancel();
                     mBleConnectingTimer = null;
@@ -192,8 +188,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 mImageViewBluetoothDisconnected.setVisibility(View.VISIBLE);
                 mImageViewBluetoothConnected.setVisibility(View.INVISIBLE);
             } else if (view.equals(mImageViewPowerOff)) {
-                if(isBleConnect)
-                {
+                if (isBleConnect) {
                     isPowerOn = true;
                     sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
                     sendControlRead(STATUS_ID_DEVICE_STATUS);
@@ -253,9 +248,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
                 mImageViewVerticalSwingOff.setVisibility(View.VISIBLE);
                 mImageViewVerticalSwingOn.setVisibility(View.INVISIBLE);
-            }
-            else if(view.equals(mImageViewTimerOff))
-            {
+            } else if (view.equals(mImageViewTimerOff)) {
                 if (isPowerOn) {
                     mSetTimerValue = 1;
                     sendControlWrite(STATUS_ID_OFF_TIMER);
@@ -270,11 +263,8 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mPowerOffTask = new PowerOffTask();
                     mPowerOffTimer.schedule(mPowerOffTask, 10, 1000);
                 }
-            }
-            else if(view.equals(mImageViewTimerOn))
-            {
-                switch(mSetTimerValue)
-                {
+            } else if (view.equals(mImageViewTimerOn)) {
+                switch (mSetTimerValue) {
                     case 1:
                         mSetTimerValue = 2;
                         break;
@@ -288,11 +278,9 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                         break;
                 }
                 sendControlWrite(STATUS_ID_OFF_TIMER);
-                if(0 < mSetTimerValue)
-                {
+                if (0 < mSetTimerValue) {
                     mTextViewTimerMin.setText(String.format("%d", mSetTimerValue));
-                }
-                else {
+                } else {
                     if (null != mPowerOffTimer) {
                         mPowerOffTimer.cancel();
                         mPowerOffTimer = null;
@@ -352,33 +340,11 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         } else {
             setPowerOffContents();
         }
-
-        if(Build.MODEL.equals(LENOVO_TAB10))
-        {
-            android.view.ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams)findViewById(R.id.horizontalSwingLayout).getLayoutParams();
-            marginParams.setMargins(90, 600, 0, 0);
-            findViewById(R.id.horizontalSwingLayout).setLayoutParams(marginParams);
-
-            marginParams = (ViewGroup.MarginLayoutParams)findViewById(R.id.airFlowLayout).getLayoutParams();
-            marginParams.setMargins(315, 600, 0, 0);
-            findViewById(R.id.airFlowLayout).setLayoutParams(marginParams);
-
-            marginParams = (ViewGroup.MarginLayoutParams)findViewById(R.id.powerLayout).getLayoutParams();
-            marginParams.setMargins(540, 600, 0, 0);
-            findViewById(R.id.powerLayout).setLayoutParams(marginParams);
-
-            marginParams = (ViewGroup.MarginLayoutParams)findViewById(R.id.timerLayout).getLayoutParams();
-            marginParams.setMargins(765, 600, 0, 0);
-            findViewById(R.id.timerLayout).setLayoutParams(marginParams);
-
-            marginParams = (ViewGroup.MarginLayoutParams)findViewById(R.id.verticalSwingLayout).getLayoutParams();
-            marginParams.setMargins(990, 600, 0, 0);
-            findViewById(R.id.verticalSwingLayout).setLayoutParams(marginParams);
-        }
     }
 
     /**
      * initializeBleService Method
+     *
      * @return Is Success initialize BLE Server
      */
     private boolean initializeBleService() {
@@ -450,8 +416,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         // Set contents
         mImageViewPowerOn.setVisibility(View.VISIBLE);
         mImageViewPowerOff.setVisibility(View.INVISIBLE);
-        if(isAirFlow)
-        {
+        if (isAirFlow) {
             mImageViewAirFlowOn.setVisibility(View.VISIBLE);
             mImageViewAirFlowOff.setVisibility(View.INVISIBLE);
             switch (mAirFlowLv) {
@@ -473,9 +438,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 default:
                     break;
             }
-        }
-        else
-        {
+        } else {
             mImageViewAirFlowOn.setVisibility(View.INVISIBLE);
             mImageViewAirFlowOff.setVisibility(View.VISIBLE);
         }
@@ -554,10 +517,10 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     /**
      * buildScanFilters Method
+     *
      * @return The list of Scan filter
      */
-    private List<ScanFilter> buildScanFilters()
-    {
+    private List<ScanFilter> buildScanFilters() {
         List<ScanFilter> scanFilters = new ArrayList<>();
         ScanFilter.Builder builder = new ScanFilter.Builder();
 
@@ -569,70 +532,57 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     /**
      * buildScanSettings Method
+     *
      * @return Scan setting builder
      */
-    private ScanSettings buildScanSettings()
-    {
+    private ScanSettings buildScanSettings() {
         ScanSettings.Builder builder = new ScanSettings.Builder();
 
         builder.setScanMode(ScanSettings.SCAN_MODE_LOW_POWER);
         return builder.build();
     }
 
-    public void sendControlWrite(int controlId)
-    {
+    public void sendControlWrite(int controlId) {
         byte[] data = new byte[BleUtil.CONTROL_WRITE_LENGTH];
-        data[0] = (byte)controlId;
+        data[0] = (byte) controlId;
 
-        if(CONTROL_ID_DEVICE_CONTROL == controlId)
-        {
+        if (CONTROL_ID_DEVICE_CONTROL == controlId) {
             // Power Control
-            if(isPowerOn)
-            {
+            if (isPowerOn) {
                 data[2] = 1;
-            }
-            else
-            {
+            } else {
                 data[2] = 0;
             }
             // Air Flow Control
-            data[3] = (byte)(mAirFlowLv + 1);
+            data[3] = (byte) (mAirFlowLv + 1);
             // Horizontal Rotation Control
-            if(isHorizontalSwing)
-            {
+            if (isHorizontalSwing) {
                 data[4] = 1;
-            }
-            else
-            {
+            } else {
                 data[4] = 0;
             }
             // Vertical Rotation Control
-            if(isVerticalSwing)
-            {
+            if (isVerticalSwing) {
                 data[5] = 1;
-            }
-            else
-            {
+            } else {
                 data[5] = 0;
             }
-        }
-        else if(STATUS_ID_OFF_TIMER == controlId)
-        {
-            data[2] = (byte)mSetTimerValue;
+        } else if (STATUS_ID_OFF_TIMER == controlId) {
+            data[2] = (byte) mSetTimerValue;
         }
 
         mBleGattInterface.sendControlWriteRequest(data);
     }
 
-    public void sendControlRead(int controlId)
-    {
+    public void sendControlRead(int controlId) {
         byte[] data = new byte[BleUtil.CONTROL_READ_LENGTH];
-        data[0] = (byte)controlId;
+        data[0] = (byte) controlId;
         mBleGattInterface.sendStatusReadRequest(data);
     }
 
     /**
      * BleScanControlCallback Method
+     *
      * @param result The information of scanned device
      */
     @Override
@@ -646,6 +596,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     /**
      * BleGattInterfaceConnectCallback Method
+     *
      * @param state Connection result
      */
     @Override
@@ -670,9 +621,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 mImageViewBluetoothConnected.setVisibility(View.VISIBLE);
                 sendControlRead(STATUS_ID_DEVICE_STATUS);
                 sendControlRead(STATUS_ID_OFF_TIMER);
-            }
-            else if(0 == state)
-            {
+            } else if (0 == state) {
                 Log.i(TAG, "BLE Disconnected");
                 isBleConnect = false;
                 mImageViewBluetoothDisconnected.setVisibility(View.VISIBLE);
@@ -683,31 +632,26 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     /**
      * BleGattInterfaceControlNotifyCallback Method
+     *
      * @param data Received data buffer
      */
     @Override
-    public void BleGattInterfaceControlNotifyCallback(byte[] data)
-    {
+    public void BleGattInterfaceControlNotifyCallback(byte[] data) {
         final Handler mainHandler = new Handler(Looper.getMainLooper());
         mainHandler.post(() -> {
-            if(STATUS_ID_DEVICE_STATUS == data[0])
-            {
+            if (STATUS_ID_DEVICE_STATUS == data[0]) {
                 Log.i(TAG, "Status Notify [Control Status]");
                 // Power Status
-                if(0 == data[2])
-                {
+                if (0 == data[2]) {
                     isPowerOn = false;
                     mImageViewPowerOn.setVisibility(View.INVISIBLE);
                     mImageViewPowerOff.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     isPowerOn = true;
                     mImageViewPowerOn.setVisibility(View.VISIBLE);
                     mImageViewPowerOff.setVisibility(View.INVISIBLE);
                 }
-                if(isPowerOn)
-                {
+                if (isPowerOn) {
                     // Air Flow Status
                     switch (data[3]) {
                         case 1:
@@ -745,42 +689,31 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mAirFlowBarRotationTimer.schedule(mAirFlowBarRotationTask, 10, (100 - (mAirFlowLv * 30)));
 
                     // Horizontal Rotation
-                    if(0 == data[4])
-                    {
+                    if (0 == data[4]) {
                         isHorizontalSwing = false;
                         mImageViewHorizontalSwingOff.setVisibility(View.VISIBLE);
                         mImageViewHorizontalSwingOn.setVisibility(View.INVISIBLE);
-                    }
-                    else
-                    {
+                    } else {
                         isHorizontalSwing = true;
                         mImageViewHorizontalSwingOff.setVisibility(View.INVISIBLE);
                         mImageViewHorizontalSwingOn.setVisibility(View.VISIBLE);
                     }
                     // Vertical Rotation
-                    if(0 == data[5])
-                    {
+                    if (0 == data[5]) {
                         isVerticalSwing = false;
                         mImageViewVerticalSwingOn.setVisibility(View.INVISIBLE);
                         mImageViewVerticalSwingOff.setVisibility(View.VISIBLE);
-                    }
-                    else
-                    {
+                    } else {
                         isVerticalSwing = true;
                         mImageViewVerticalSwingOn.setVisibility(View.VISIBLE);
                         mImageViewVerticalSwingOff.setVisibility(View.INVISIBLE);
                     }
-                }
-                else
-                {
+                } else {
                     setPowerOffContents();
                 }
-            }
-            else if(STATUS_ID_OFF_TIMER == data[0])
-            {
-                if((0 < data[3]) || (0 < data[4]))
-                {
-                    mSetTimerValue = (int)data[2];
+            } else if (STATUS_ID_OFF_TIMER == data[0]) {
+                if ((0 < data[3]) || (0 < data[4])) {
+                    mSetTimerValue = (int) data[2];
                     mTextViewTimerMin.setVisibility(View.VISIBLE);
                     mTextViewTimerMin.setText(String.format("%d", mSetTimerValue));
                     if (null == mPowerOffTimer) {
@@ -792,9 +725,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mImageViewTimerOff.setVisibility(View.INVISIBLE);
                     mTextViewTimerVal.setVisibility(View.VISIBLE);
                     mTextViewTimerVal.setText(String.format("%02d", data[3]) + ":" + String.format("%02d", data[4]));
-                }
-                else
-                {
+                } else {
                     if (null != mPowerOffTimer) {
                         mPowerOffTimer.cancel();
                         mPowerOffTimer = null;
@@ -817,13 +748,10 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         public void run() {
             final Handler mainHandler = new Handler(Looper.getMainLooper());
             mainHandler.post(() -> {
-                if(View.INVISIBLE == mImageViewBluetoothDisconnected.getVisibility())
-                {
+                if (View.INVISIBLE == mImageViewBluetoothDisconnected.getVisibility()) {
                     mImageViewBluetoothDisconnected.setVisibility(View.VISIBLE);
                     mImageViewBluetoothConnected.setVisibility(View.INVISIBLE);
-                }
-                else
-                {
+                } else {
                     mImageViewBluetoothDisconnected.setVisibility(View.INVISIBLE);
                     mImageViewBluetoothConnected.setVisibility(View.VISIBLE);
                 }
@@ -855,7 +783,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         public void run() {
             final Handler mainHandler = new Handler(Looper.getMainLooper());
             mainHandler.post(() -> {
-                if(isPowerOn) {
+                if (isPowerOn) {
                     sendControlRead(STATUS_ID_OFF_TIMER);
                 }
             });

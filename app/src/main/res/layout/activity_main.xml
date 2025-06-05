@@ -7,279 +7,499 @@
     android:layout_height="fill_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:background="#add8e6"
-        android:id="@+id/machineLayout">
-        <ImageView
-            android:id="@+id/imageViewCirculator1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            app:srcCompat="@drawable/circulator" />
-        <TextView
-            android:id="@+id/textViewProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="350dp"
-            android:layout_marginTop="110dp"
-            android:fontFamily="sans-serif-light"
-            android:textSize="28dp"
-            android:textStyle="bold"
-            android:text="YAMAZEN" />
-        <TextView
-            android:id="@+id/textViewMachineName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="350dp"
-            android:layout_marginTop="150dp"
-            android:fontFamily="sans-serif-light"
-            android:textSize="36dp"
-            android:textStyle="bold"
-            android:text="YAR-FKW15" />
-    </RelativeLayout>
+        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="300dp"
-        android:id="@+id/bleLayout">
-        <ImageView
-            android:id="@+id/imageViewBluetoothDisconnected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="20dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/bluetooth_disconnected" />
-        <ImageView
-            android:id="@+id/imageViewBluetoothConnected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="20dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/bluetooth_connected" />
-        <ImageView
-            android:id="@+id/imageViewBluetoothCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="30dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/ble_cancel" />
-    </RelativeLayout>
+        <!-- サーキュレーターレイアウト -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/machineLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#add8e6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/horizontalSwingLayout">
-        <ImageView
-            android:id="@+id/imageViewHorizontalSwingOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:visibility="visible"
-            app:srcCompat="@drawable/horizontal_swing_off" />
-        <ImageView
-            android:id="@+id/imageViewHorizontalSwingOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/horizontal_swing_on" />
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <!-- サーキュレーター -->
+                <ImageView
+                    android:id="@+id/imageViewCirculator1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/circulator" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/airFlowLayout">
-        <ImageView
-            android:id="@+id/imageViewAirFlowOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/air_flow_off" />
-        <ImageView
-            android:id="@+id/imageViewAirFlowOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/air_flow_on" />
-        <ImageView
-            android:id="@+id/imageViewAirFlowLow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:visibility="visible"
-            app:srcCompat="@drawable/air_low" />
-        <ImageView
-            android:id="@+id/imageViewAirFlowMiddle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/air_middle" />
-        <ImageView
-            android:id="@+id/imageViewAirFlowHigh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/air_high" />
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <!-- メーカー名 -->
+                    <TextView
+                        android:id="@+id/textViewProductName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/imageViewCirculator1"
+                        android:fontFamily="sans-serif-light"
+                        android:scaleType="fitCenter"
+                        android:text="YAMAZEN"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+                    <!-- 製品番号 -->
+                    <TextView
+                        android:id="@+id/textViewMachineName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:scaleType="fitCenter"
+                        android:text="YAR-FKW15"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/powerLayout">
-        <ImageView
-            android:id="@+id/imageViewPowerOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/power_off" />
-        <ImageView
-            android:id="@+id/imageViewPowerOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/power_on" />
-    </RelativeLayout>
+        <!-- Bluetoothレイアウト -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bluetoothLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/machineLayout">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="370dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/timerLayout">
-        <ImageView
-            android:id="@+id/imageViewTimerOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/timer_off" />
-        <ImageView
-            android:id="@+id/imageViewTimerOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/timer_on" />
-        <TextView
-            android:id="@+id/textViewTimerMin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="0dp"
-            android:text="-"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:visibility="invisible"/>
-        <TextView
-            android:id="@+id/textViewTimerVal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="150dp"
-            android:text=""
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:visibility="invisible"/>
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <!-- オフラインアイコン -->
+                <ImageView
+                    android:id="@+id/imageViewBluetoothDisconnected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/bluetooth_disconnected" />
+                <!-- オンラインアイコン -->
+                <ImageView
+                    android:id="@+id/imageViewBluetoothConnected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bluetooth_connected" />
+                <!-- Scan停止アイコン -->
+                <ImageView
+                    android:id="@+id/imageViewBluetoothCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ble_cancel" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="490dp"
-        android:layout_marginTop="400dp"
-        android:id="@+id/verticalSwingLayout">
-        <ImageView
-            android:id="@+id/imageViewVerticalSwingOff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="visible"
-            app:srcCompat="@drawable/vertical_swing_off" />
-        <ImageView
-            android:id="@+id/imageViewVerticalSwingOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            android:visibility="invisible"
-            app:srcCompat="@drawable/vertical_swing_on" />
-    </RelativeLayout>
+        <!-- 制御アイコンレイアウト -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controlLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bluetoothLayout">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-        <ImageView
-            android:id="@+id/imageViewPersolLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="0dp"
-            android:scaleX="1.0"
-            android:scaleY="1.0"
-            app:srcCompat="@drawable/ogp_pphr" />
-    </RelativeLayout>
+            <!-- 横回転レイアウト -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/horizontalSwingLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/airFlowLvLayout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:id="@+id/dummyContents1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
+                        <ImageView
+                            android:id="@+id/imageViewDummy1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            app:srcCompat="@drawable/air_low" />
+                    </FrameLayout>
+                    <!-- 横回転 OFF -->
+                    <ImageView
+                        android:id="@+id/imageViewHorizontalSwingOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents1"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/horizontal_swing_off" />
+                    <!-- 横回転 ON -->
+                    <ImageView
+                        android:id="@+id/imageViewHorizontalSwingOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents1"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/horizontal_swing_on" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 風量レベルレイアウト -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/airFlowLvLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/horizontalSwingLayout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/powerLayout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:id="@+id/airFlowLevelContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <!-- 風量Lv1 -->
+                        <ImageView
+                            android:id="@+id/imageViewAirFlowLow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="visible"
+                            app:srcCompat="@drawable/air_low" />
+                        <!-- 風量Lv2 -->
+                        <ImageView
+                            android:id="@+id/imageViewAirFlowMiddle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            app:srcCompat="@drawable/air_middle" />
+                        <!-- 風量Lv3 -->
+                        <ImageView
+                            android:id="@+id/imageViewAirFlowHigh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            app:srcCompat="@drawable/air_high" />
+                    </FrameLayout>
+                    <!-- 風量 OFF -->
+                    <ImageView
+                        android:id="@+id/imageViewAirFlowOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/airFlowLevelContainer"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/air_flow_off" />
+                    <!-- 風量 ON -->
+                    <ImageView
+                        android:id="@+id/imageViewAirFlowOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/airFlowLevelContainer"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/air_flow_on" />
+
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 電源レイアウト -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/powerLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/airFlowLvLayout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/verticalSwingLayout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:id="@+id/dummyContents2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageViewDummy2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            app:srcCompat="@drawable/air_low" />
+                    </FrameLayout>
+                    <!-- 電源 OFF -->
+                    <ImageView
+                        android:id="@+id/imageViewPowerOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents2"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/power_off" />
+                    <!-- 電源 ON -->
+                    <ImageView
+                        android:id="@+id/imageViewPowerOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents2"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/power_on" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 縦回転レイアウト -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/verticalSwingLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/powerLayout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <FrameLayout
+                        android:id="@+id/dummyContents3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageViewDummy3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            android:scaleType="fitCenter"
+                            android:visibility="invisible"
+                            app:srcCompat="@drawable/air_low" />
+                    </FrameLayout>
+                    <!-- 縦回転 OFF -->
+                    <ImageView
+                        android:id="@+id/imageViewVerticalSwingOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents3"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/vertical_swing_off" />
+                    <!-- 縦回転 ON -->
+                    <ImageView
+                        android:id="@+id/imageViewVerticalSwingOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dummyContents3"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/vertical_swing_on" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- タイマーレイアウト -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="left"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintTop_toBottomOf="@id/controlLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timerIconLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/timerValueLayout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <!-- タイマー OFF -->
+                    <ImageView
+                        android:id="@+id/imageViewTimerOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/timer_off" />
+                    <!-- タイマー ON -->
+                    <ImageView
+                        android:id="@+id/imageViewTimerOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/timer_on" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timerValueLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/timerIconLayout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/timerDummy1Layout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <!-- 設定時間 -->
+                    <TextView
+                        android:id="@+id/textViewTimerMin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+                    <!-- 残り時間 -->
+                    <TextView
+                        android:id="@+id/textViewTimerVal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_below="@id/textViewTimerMin"
+                        android:visibility="invisible" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timerDummy1Layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/timerValueLayout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/timerDummy2Layout"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timerDummy2Layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@+id/timerDummy1Layout"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintHeight_percent="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- PHRロゴレイアウト -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/logoLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timerLayout">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="">
+                <ImageView
+                    android:id="@+id/imageViewPersolLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ogp_pphr" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
