@@ -175,10 +175,13 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            // クリック別に処理を分岐
             if (view.equals(mImageViewBluetoothDisconnected)) {
+                // BLE切断アイコンの場合
                 setContentView(R.layout.ble_scan_device);
                 startScanBleDevice();
             } else if (view.equals(mImageViewBluetoothCancel)) {
+                // BLE接続キャンセルアイコンの場合
                 if (null != mBleConnectingTimer) {
                     mBleConnectingTimer.cancel();
                     mBleConnectingTimer = null;
@@ -188,15 +191,18 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 mImageViewBluetoothDisconnected.setVisibility(View.VISIBLE);
                 mImageViewBluetoothConnected.setVisibility(View.INVISIBLE);
             } else if (view.equals(mImageViewPowerOff)) {
+                // 電源OFFアイコンの場合
                 if (isBleConnect) {
                     isPowerOn = true;
                     sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
                     sendControlRead(STATUS_ID_DEVICE_STATUS);
                 }
             } else if (view.equals(mImageViewPowerOn)) {
+                // 電源ONアイコンの場合
                 setPowerOffContents();
                 sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
             } else if (view.equals(mImageViewAirFlowOn)) {
+                // 風量アイコンの場合
                 if (isPowerOn) {
                     mAirFlowLv = (mAirFlowLv + 1) % 3;
                     sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
@@ -225,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mAirFlowBarRotationTimer.schedule(mAirFlowBarRotationTask, 10, (100 - (mAirFlowLv * 30)));
                 }
             } else if (view.equals(mImageViewHorizontalSwingOff)) {
+                // 横回転OFFアイコンの場合
                 if (isPowerOn) {
                     isHorizontalSwing = true;
                     sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
@@ -232,11 +239,13 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mImageViewHorizontalSwingOff.setVisibility(View.INVISIBLE);
                 }
             } else if (view.equals(mImageViewHorizontalSwingOn)) {
+                // 横回転ONアイコンの場合
                 isHorizontalSwing = false;
                 sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
                 mImageViewHorizontalSwingOff.setVisibility(View.VISIBLE);
                 mImageViewHorizontalSwingOn.setVisibility(View.INVISIBLE);
             } else if (view.equals(mImageViewVerticalSwingOff)) {
+                // 縦回転OFFアイコンの場合
                 if (isPowerOn) {
                     isVerticalSwing = true;
                     sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
@@ -244,11 +253,13 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mImageViewVerticalSwingOff.setVisibility(View.INVISIBLE);
                 }
             } else if (view.equals(mImageViewVerticalSwingOn)) {
+                // 縦回転ONアイコンの場合
                 isVerticalSwing = false;
                 sendControlWrite(CONTROL_ID_DEVICE_CONTROL);
                 mImageViewVerticalSwingOff.setVisibility(View.VISIBLE);
                 mImageViewVerticalSwingOn.setVisibility(View.INVISIBLE);
             } else if (view.equals(mImageViewTimerOff)) {
+                // 切タイマーOFFアイコンの場合
                 if (isPowerOn) {
                     mSetTimerValue = 1;
                     sendControlWrite(STATUS_ID_OFF_TIMER);
@@ -264,6 +275,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                     mPowerOffTimer.schedule(mPowerOffTask, 10, 1000);
                 }
             } else if (view.equals(mImageViewTimerOn)) {
+                // 切タイマーONアイコンの場合
                 switch (mSetTimerValue) {
                     case 1:
                         mSetTimerValue = 2;
