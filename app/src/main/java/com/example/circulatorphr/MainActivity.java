@@ -2,6 +2,7 @@ package com.example.circulatorphr;
 
 import static java.lang.Thread.sleep;
 
+import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
         Log.i(TAG, "Model: " + Build.MODEL);
 
+        checkAndRequestPermissions();
         setContentView(R.layout.activity_main);
         initialContents();
         initializeBleService();
@@ -182,6 +184,19 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
                 // BLE切断アイコンの場合
                 setContentView(R.layout.ble_scan_device);
                 startScanBleDevice();
+            } else if (view.equals(mImageViewBluetoothConnected)) {
+                // BLE接続アイコンの場合
+                mBleGattInterface.startDisconnection();
+                isBleConnect = false;
+                isAirFlow = false;
+                isHorizontalSwing = false;
+                isVerticalSwing = false;
+                mAirFlowLv = 0;
+                mAirFlowRotation = 0;
+                mSetTimerValue = 0;
+                mImageViewBluetoothDisconnected.setVisibility(View.VISIBLE);
+                mImageViewBluetoothConnected.setVisibility(View.INVISIBLE);
+                setPowerOffContents();
             } else if (view.equals(mImageViewBluetoothCancel)) {
                 // BLE接続キャンセルアイコンの場合
                 if (null != mBleConnectingTimer) {
@@ -316,6 +331,7 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         mImageViewBluetoothDisconnected = findViewById(R.id.imageViewBluetoothDisconnected);
         mImageViewBluetoothDisconnected.setOnClickListener(mOnClickListener);
         mImageViewBluetoothConnected = findViewById(R.id.imageViewBluetoothConnected);
+        mImageViewBluetoothConnected.setOnClickListener(mOnClickListener);
         mImageViewPowerOff = findViewById(R.id.imageViewPowerOff);
         mImageViewPowerOff.setOnClickListener(mOnClickListener);
         mImageViewPowerOn = findViewById(R.id.imageViewPowerOn);
@@ -806,6 +822,17 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
 
     private static final int REQUEST_CODE_PERMISSIONS = 100;
 
+    /**
+     * onRequestPermissionsResult
+     *
+     * @param requestCode The request code passed in {@link #requestPermissions(
+     * android.app.Activity, String[], int)}
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *     which is either {@link android.content.pm.PackageManager#PERMISSION_GRANTED}
+     *     or {@link android.content.pm.PackageManager#PERMISSION_DENIED}. Never null.
+     *
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -825,38 +852,41 @@ public class MainActivity extends AppCompatActivity implements BleScanControl.Bl
         }
     }
 
-//    private void checkAndRequestPermissions() {
-//        List<String> permissionsNeeded = new ArrayList<>();
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {  // Android 12+
-//            if (checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.BLUETOOTH_SCAN);
-//            }
-//            if (checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.BLUETOOTH_CONNECT);
-//            }
-//        } else {
-//            if (checkSelfPermission(Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.BLUETOOTH);
-//            }
-//            if (checkSelfPermission(Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.BLUETOOTH_ADMIN);
-//            }
-//        }
-//
-//        // 位置情報パーミッション
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  // Android 10+
-//            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
-//            }
-//        } else {
-//            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                permissionsNeeded.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-//            }
-//        }
-//
-//        if (!permissionsNeeded.isEmpty()) {
-//            requestPermissions(permissionsNeeded.toArray(new String[0]), REQUEST_CODE_PERMISSIONS);
-//        }
-//    }
+    /**
+     * checkAndRequestPermissions
+     */
+    private void checkAndRequestPermissions() {
+        List<String> permissionsNeeded = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {  // Android 12+
+            if (checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.BLUETOOTH_SCAN);
+            }
+            if (checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.BLUETOOTH_CONNECT);
+            }
+        } else {
+            if (checkSelfPermission(Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.BLUETOOTH);
+            }
+            if (checkSelfPermission(Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.BLUETOOTH_ADMIN);
+            }
+        }
+
+        // 位置情報パーミッション
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {  // Android 10+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+        } else {
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissionsNeeded.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+        }
+
+        if (!permissionsNeeded.isEmpty()) {
+            requestPermissions(permissionsNeeded.toArray(new String[0]), REQUEST_CODE_PERMISSIONS);
+        }
+    }
 }
