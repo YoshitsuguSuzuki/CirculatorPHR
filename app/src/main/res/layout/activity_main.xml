@@ -111,7 +111,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="80dp"
                     android:scaleType="fitCenter"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     app:srcCompat="@drawable/ble_cancel" />
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
